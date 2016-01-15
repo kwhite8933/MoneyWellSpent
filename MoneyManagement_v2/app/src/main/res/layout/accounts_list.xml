@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/very_dark_gray">
+
+    <TextView
+        android:id="@+id/tvVAAccountName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/ivory"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="28sp"
+        android:padding="16dp"
+        android:layout_weight="0.5"/>
+
+    <TextView
+        android:id="@+id/tvAccountBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/ivory"
+        android:layout_weight="0.5"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="28sp"
+        android:padding="16dp"
+        android:gravity="end"/>
+
+</LinearLayout>

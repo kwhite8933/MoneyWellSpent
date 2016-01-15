@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.kylewhite.moneymanagement_v2">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".addAccount"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".transfer"
+            android:label="@string/title_activity_transfer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".add_bill"
+            android:label="@string/title_activity_add_bill"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".add_expense"
+            android:label="@string/title_activity_add_expense"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".billList"
+            android:label="@string/title_activity_view_bill"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".billsList"
+            android:label="@string/title_activity_bills_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".viewBill"
+            android:label="@string/title_activity_view_bill"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".accountsList"
+            android:label="@string/title_activity_accouts_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".viewAccount"
+            android:label="@string/title_activity_view_account"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

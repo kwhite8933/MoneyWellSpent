@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/very_dark_gray"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.kylewhite.moneymanagement_v2.addAccount"
+    tools:showIn="@layout/activity_add_account">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
+
+            <EditText
+                android:id="@+id/etAccountName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name of account"
+                android:inputType="textShortMessage"
+                android:textColor="@color/ivory"
+                android:textColorHint="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting Balance: $"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
+
+            <EditText
+                android:id="@+id/etAccountStartingBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Starting Balance"
+                android:inputType="numberDecimal"
+                android:textColor="@color/ivory"
+                android:textColorHint="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnAccountCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CANCEL" />
+
+            <Button
+                android:id="@+id/btnAddAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_account" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

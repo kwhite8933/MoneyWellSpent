@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">MoneyManagement_v2</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_account">ADD ACCOUNT</string>
+    <string name="title_activity_transfer">transfer</string>
+    <string name="name">Name:</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="type">Type:</string>
+    <string name="frequency">Frequency:</string>
+    <string name="amount">Amount: $</string>
+    <string name="starting_date">Starting Date:</string>
+    <string name="ending_date">Ending Date:</string>
+    <string name="transfer_bw_accts">Transfer Between Accounts</string>
+    <string name="cancel">CANCEL</string>
+    <string name="submit">SUBMIT</string>
+    <!-- samples for formatting purposes -->
+    <string name="sample_bill_name">Bill 1</string>
+    <string name="sample_cost">$50.00</string>
+    <string name="sample_date">8/9/93</string>
+    <string name="sample_account">Account1</string>
+    <!-- billing -->
+    <string name="add_bill">Add A Bill</string>
+    <string name="name_of_bill">Name of Bill</string>
+    <string name="location">Location:</string>
+    <string name="billing_account">Account:</string>
+    <string name="next_payment_date">Next Payment Date</string>
+    <!-- accounts -->
+    <string name="upcoming_transactions">Upcoming Transactions:</string>
+    <!-- expenses -->
+    <string name="add_expense">Add an Expense</string>
+    <string name="name_of_expense">Name of Expense</string>
+    <!-- days of the week -->
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+    <string name="sun">Sunday</string>
+    <string name="title_activity_add_bill">add_bill</string>
+    <string name="title_activity_add_expense">add_expense</string>
+    <string name="title_activity_view_bill">viewBill</string>
+    <string name="title_activity_bills_list">billsList</string>
+    <string name="title_activity_accouts_list">accoutsList</string>
+    <string name="title_activity_view_account">viewAccount</string>
+</resources>
