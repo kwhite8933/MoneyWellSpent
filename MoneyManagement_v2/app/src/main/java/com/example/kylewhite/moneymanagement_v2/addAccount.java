@@ -43,7 +43,7 @@ public class addAccount extends AppCompatActivity {
         etAccountName.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
         etAccountStartingBalance = (EditText) findViewById(R.id.etAccountStartingBalance);
-        etAccountStartingBalance.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        etAccountStartingBalance.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         final classDbHelper mDbHelper = new classDbHelper(getApplicationContext());
 
