@@ -14,7 +14,7 @@ public class classDbHelper extends SQLiteOpenHelper {
     public static String TAG = classDbHelper.class.getSimpleName();
 
     // identifying database
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
     public static final String DB_NAME = "MoneyManagement";
 
     /////////////////////////  Bills Table  /////////////////////////
@@ -95,6 +95,24 @@ public class classDbHelper extends SQLiteOpenHelper {
 
     }
 
+    /////////////////////////  Expense Table  /////////////////////////
+    public static final String EXPENSE_TABLE_NAME = "expenseDb";
+
+    // names fields in the expense database
+    public static final String[] EXPENSE_FIELDS = {"id", "expense_name", "expense_amount"};
+
+    public static final String EXPENSE_TABLE_CREATE =
+            "CREATE TABLE IF NOT EXISTS " + EXPENSE_TABLE_NAME + " (" +
+                    EXPENSE_FIELDS[0] + " INTEGER PRIMARY KEY, " +
+                    EXPENSE_FIELDS[1] + " text, " +
+                    EXPENSE_FIELDS[2] + " text" +
+                    " );" ;
+
+    public static final String EXPENSE_SELECT_ALL = "SELECT * FROM " + EXPENSE_TABLE_NAME;
+    public static String expenseSelectById( int expenseId ){
+        return "SELECT * FROM " + EXPENSE_TABLE_NAME + "WHERE id='" + expenseId + "'";
+    }
+
     // Constructor required by SQlineOpenHelper
     classDbHelper(Context context){
         super( context , DB_NAME, null, DB_VERSION );
@@ -105,6 +123,7 @@ public class classDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(BILL_TABLE_CREATE);
         db.execSQL(ACCOUNT_TABLE_CREATE);
+        db.execSQL(EXPENSE_TABLE_CREATE);
 
     }
 
@@ -113,6 +132,7 @@ public class classDbHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + BILL_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + EXPENSE_TABLE_NAME);
 
     }
 

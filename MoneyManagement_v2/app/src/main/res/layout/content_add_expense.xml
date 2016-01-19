@@ -71,13 +71,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtAmount"
+                android:id="@+id/txtExpenseAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amount"/>
 
             <EditText
-                android:id="@+id/etAmount"
+                android:id="@+id/etExpenseAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Price of Expense"
@@ -95,14 +95,14 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/btnTransCancel"
+                android:id="@+id/btnExpenseCancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cancel" />
 
             <Button
-                android:id="@+id/btnTransSubmit"
+                android:id="@+id/btnExpenseSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

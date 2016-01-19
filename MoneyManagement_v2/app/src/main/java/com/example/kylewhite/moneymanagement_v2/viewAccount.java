@@ -81,6 +81,18 @@ public class viewAccount extends AppCompatActivity {
 
             // Account Starting Balance
             tvVAStartingBalance.setText(c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2])));
+
+            /* below is a way to convert the string value of the starting balance to a double
+             * for manipulation of the balance for transfer, billing, expenses, etc.
+             * Also formats the value to have the format of US currency ( #.## , 2 decimal places )
+
+            String strSelector = c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+            double flSelector = Double.parseDouble(strSelector);
+            flSelector = flSelector - 1.00;
+            tvVAStartingBalance.setText(String.format("%.2f",flSelector));
+
+            */
+
         } else {
             c.close();
             return false;
