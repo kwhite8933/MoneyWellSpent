@@ -40,7 +40,7 @@ public class addAccount extends AppCompatActivity {
         });
 
         etAccountName = (EditText) findViewById(R.id.etAccountName);
-        etAccountName.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        etAccountName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 
         etAccountStartingBalance = (EditText) findViewById(R.id.etAccountStartingBalance);
         etAccountStartingBalance.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);

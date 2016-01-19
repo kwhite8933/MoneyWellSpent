@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,13 +40,19 @@ public class add_expense extends AppCompatActivity {
             }
         });
 
+        etExpenseName = (EditText) findViewById(R.id.etExpenseName);
+        etExpenseName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+
+        etExpenseAmount = (EditText) findViewById(R.id.etExpenseAmount);
+        etExpenseAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
         // database connection
         final classDbHelper mDbHelper = new classDbHelper( getApplicationContext() );
 
         // insert data for the account the expense will be taken from
         dropdown_location = (Spinner)findViewById(R.id.spnLocation);
         String[] accounts = new String[]{"Select an Account", "Account1", "Account2", "Account3"};
-        ArrayAdapter<String> adapter_location = new ArrayAdapter<String>(add_expense.this, android.R.layout.simple_spinner_dropdown_item, accounts);
+        ArrayAdapter<String> adapter_location = new ArrayAdapter<String>(add_expense.this, R.layout.my_spinner, accounts);
         adapter_location.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_location.setAdapter(adapter_location);
 
