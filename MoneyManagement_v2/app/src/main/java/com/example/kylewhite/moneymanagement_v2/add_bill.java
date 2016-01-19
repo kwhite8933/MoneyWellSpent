@@ -49,11 +49,11 @@ public class add_bill extends AppCompatActivity {
         etBillEndDate.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 */
 
-        etAmount = (EditText) findViewById(R.id.etAmount);
-        etAmount.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
-
         etBillName = (EditText) findViewById(R.id.etBillName);
-        etBillName.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        etBillName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+
+        etAmount = (EditText) findViewById(R.id.etAmount);
+        etAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         final classDbHelper mDbHelper = new classDbHelper(getApplicationContext());
 

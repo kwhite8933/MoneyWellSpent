@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/very_dark_gray"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,7 +21,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_expense" />
+            android:text="@string/add_expense"
+            android:textColor="@color/ivory"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-thin"/>
 
         <!-- expense name layout -->
         <LinearLayout
@@ -31,14 +35,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:text="@string/name"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <EditText
                 android:id="@+id/etExpenseName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name_of_expense"
-                android:inputType="textShortMessage"/>
+                android:inputType="textShortMessage"
+                android:textColor="@color/ivory"
+                android:textColorHint="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
         </LinearLayout>
         <!-- end expense name layout -->
@@ -52,7 +63,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/location" />
+                android:text="@string/location"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <Spinner
                 android:id="@+id/spnLocation"
@@ -74,14 +88,21 @@
                 android:id="@+id/txtExpenseAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/amount"/>
+                android:text="@string/amount"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <EditText
                 android:id="@+id/etExpenseAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Price of Expense"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:textColor="@color/ivory"
+                android:textColorHint="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
         </LinearLayout>
         <!-- end amount layout -->
