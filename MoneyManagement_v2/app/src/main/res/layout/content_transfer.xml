@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/very_dark_gray"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,7 +21,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/transfer_bw_accts" />
+            android:text="@string/transfer_bw_accts"
+            android:textColor="@color/ivory"
+            android:fontFamily="sans-serif-thin"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +33,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/from" />
+                android:text="@string/from"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <Spinner
                 android:id="@+id/spnAccountTo"
@@ -50,7 +56,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/to" />
+                android:paddingTop="10dp"
+                android:text="@string/to"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <Spinner
                 android:id="@+id/spnAccountFrom"
@@ -61,11 +71,12 @@
 
         </LinearLayout>
         <!-- end to account layout -->
+<!--
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"> <!-- type of transfer -->
+            android:orientation="horizontal"> &lt;!&ndash; type of transfer &ndash;&gt;
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,10 +91,10 @@
                 android:spinnerMode="dialog" />
 
         </LinearLayout>
-        <!-- end type transfer layout -->
+        &lt;!&ndash; end type transfer layout &ndash;&gt;
 
 
-        <!-- frequency picker layout -->
+        &lt;!&ndash; frequency picker layout &ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,19 +105,19 @@
                 android:layout_height="wrap_content"
                 android:text="@string/frequency" />
 
-            <!-- day of week spinner -->
+            &lt;!&ndash; day of week spinner &ndash;&gt;
             <Spinner
                 android:id="@+id/spnFrequency"
                 style="?android:spinnerItemStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:spinnerMode="dialog" />
-            <!-- end day of week spinner -->
+            &lt;!&ndash; end day of week spinner &ndash;&gt;
 
         </LinearLayout>
-        <!-- end frequency layout -->
+        &lt;!&ndash; end frequency layout &ndash;&gt;
 
-        <!-- start date layout -->
+        &lt;!&ndash; start date layout &ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,9 +137,9 @@
                 android:focusableInTouchMode="false"/>
 
         </LinearLayout>
-        <!-- end start time layout -->
+        &lt;!&ndash; end start time layout &ndash;&gt;
 
-        <!-- end date layout -->
+        &lt;!&ndash; end date layout &ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,7 +159,8 @@
                 android:focusableInTouchMode="false"/>
 
         </LinearLayout>
-        <!-- end end time layout -->
+        &lt;!&ndash; end end time layout &ndash;&gt;
+-->
 
         <!-- end amount layout -->
         <LinearLayout
@@ -160,14 +172,20 @@
                 android:id="@+id/txtAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/amount"/>
+                android:text="@string/amount"
+                android:textColor="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
             <EditText
-                android:id="@+id/etAmount"
+                android:id="@+id/etTransferAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Amount to transfer"
-                android:inputType="numberDecimal"/>
+                android:textColor="@color/ivory"
+                android:textColorHint="@color/ivory"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-thin"/>
 
         </LinearLayout>
         <!-- end amount layout -->

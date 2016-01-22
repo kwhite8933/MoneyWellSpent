@@ -14,7 +14,7 @@ public class classDbHelper extends SQLiteOpenHelper {
     public static String TAG = classDbHelper.class.getSimpleName();
 
     // identifying database
-    private static final int DB_VERSION = 7;
+    private static final int DB_VERSION = 9;
     public static final String DB_NAME = "MoneyManagement";
 
     /////////////////////////  Bills Table  /////////////////////////
@@ -99,18 +99,39 @@ public class classDbHelper extends SQLiteOpenHelper {
     public static final String EXPENSE_TABLE_NAME = "expenseDb";
 
     // names fields in the expense database
-    public static final String[] EXPENSE_FIELDS = {"id", "expense_name", "expense_amount"};
+    public static final String[] EXPENSE_FIELDS = {"id", "expense_name", "expense_account", "expense_amount"};
 
     public static final String EXPENSE_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + EXPENSE_TABLE_NAME + " (" +
                     EXPENSE_FIELDS[0] + " INTEGER PRIMARY KEY, " +
                     EXPENSE_FIELDS[1] + " text, " +
-                    EXPENSE_FIELDS[2] + " text" +
+                    EXPENSE_FIELDS[2] + " text, " +
+                    EXPENSE_FIELDS[3] + " text" +
                     " );" ;
 
     public static final String EXPENSE_SELECT_ALL = "SELECT * FROM " + EXPENSE_TABLE_NAME;
     public static String expenseSelectById( int expenseId ){
         return "SELECT * FROM " + EXPENSE_TABLE_NAME + "WHERE id='" + expenseId + "'";
+    }
+
+    /////////////////////////  Expense Table  /////////////////////////
+    public static final String TRANSFER_TABLE_NAME = "transferDb";
+
+    // names fields in the transfer database
+    public static final String[] TRANSFER_FIELDS = {"id", "transfer_from_acct", "transfer_to_acct",
+            "transfer_amount"};
+
+    public static final String TRANSFER_TABLE_CREATE =
+            "CREATE TABLE IF NOT EXISTS " + TRANSFER_TABLE_NAME + " (" +
+                    TRANSFER_FIELDS[0] + " INTEGER PRIMARY KEY, " +
+                    TRANSFER_FIELDS[1] + " text, " +
+                    TRANSFER_FIELDS[2] + " text, " +
+                    TRANSFER_FIELDS[3] + " text" +
+                    " );" ;
+
+    public static final String TRANSFER_SELECT_ALL = "SELECT * FROM " + TRANSFER_TABLE_NAME;
+    public static String transferSelectById( int transferId ){
+        return "SELECT * FROM " + TRANSFER_TABLE_NAME + "WHERE id='" + transferId + "'";
     }
 
     // Constructor required by SQlineOpenHelper
@@ -124,6 +145,7 @@ public class classDbHelper extends SQLiteOpenHelper {
         db.execSQL(BILL_TABLE_CREATE);
         db.execSQL(ACCOUNT_TABLE_CREATE);
         db.execSQL(EXPENSE_TABLE_CREATE);
+        db.execSQL(TRANSFER_TABLE_CREATE);
 
     }
 
@@ -133,6 +155,7 @@ public class classDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + BILL_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + EXPENSE_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TRANSFER_TABLE_NAME);
 
     }
 
