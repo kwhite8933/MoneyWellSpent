@@ -3,6 +3,7 @@ package com.example.kylewhite.moneymanagement_v2;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class add_bill extends AppCompatActivity {
 
     /*private static final String PREFS_NAME = "MoneyManagementPrefs";*/
@@ -33,6 +37,7 @@ public class add_bill extends AppCompatActivity {
     private String errorMsg;
     private Spinner dropdown_account;
     //private Spinner dropdown_dayOfWeek;
+    private classDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public class add_bill extends AppCompatActivity {
         etAmount = (EditText) findViewById(R.id.etAmount);
         etAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
-        final classDbHelper mDbHelper = new classDbHelper(getApplicationContext());
+        mDbHelper = new classDbHelper(getApplicationContext());
 
 
 
@@ -73,9 +78,9 @@ public class add_bill extends AppCompatActivity {
             }
         });
 
-        // insert data for the account the bill will be taken from
+        // data for the account the bill will be taken from
         dropdown_account = (Spinner)findViewById(R.id.spnBillingAccount);
-        String[] accounts = new String[]{"Select an Account", "Account1", "Account2", "Account3"};
+        List<String> accounts = getAccounts();
         ArrayAdapter<String> adapter_account = new ArrayAdapter<>(this, R.layout.my_spinner, accounts);
         adapter_account.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_account.setAdapter(adapter_account);
@@ -227,5 +232,23 @@ public class add_bill extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
     }
+
+    public List<String> getAccounts(){
+
+        List<String> accounts = new ArrayList<String>();
+
+        SQLiteDatabase mDb = mDbHelper.getReadableDatabase();
+        Cursor c = mDb.rawQuery(classDbHelper.ACCOUNT_SELECT_ALL, null);
+
+        accounts.add("Select an Account");
+        if(c.moveToFirst()){
+            do{
+                accounts.add(c.getString(1));
+            } while(c.moveToNext());
+        }
+
+        return accounts;
+    }
+
 
 }

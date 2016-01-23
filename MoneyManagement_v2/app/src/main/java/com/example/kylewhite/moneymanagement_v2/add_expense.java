@@ -3,6 +3,7 @@ package com.example.kylewhite.moneymanagement_v2;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,12 +22,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class add_expense extends AppCompatActivity {
 
     private EditText etExpenseName;
     private EditText etExpenseAmount;
     private Spinner dropdown_location;
     private String errorMsg;
+    private classDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +58,13 @@ public class add_expense extends AppCompatActivity {
         etExpenseAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         // database connection
-        final classDbHelper mDbHelper = new classDbHelper( getApplicationContext() );
+        mDbHelper = new classDbHelper( getApplicationContext() );
 
-        // insert data for the account the expense will be taken from
+        // data for the account the expense will be taken from
+        // TODO: change name of spinner from location to something more similar to accounts
         dropdown_location = (Spinner)findViewById(R.id.spnLocation);
-        String[] accounts = new String[]{"Select an Account", "Account1", "Account2", "Account3"};
-        ArrayAdapter<String> adapter_location = new ArrayAdapter<String>(add_expense.this, R.layout.my_spinner, accounts);
+        List<String> accounts = getAccounts();
+        ArrayAdapter<String> adapter_location = new ArrayAdapter<>(add_expense.this, R.layout.my_spinner, accounts);
         adapter_location.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_location.setAdapter(adapter_location);
 
@@ -73,7 +79,6 @@ public class add_expense extends AppCompatActivity {
                 ContentValues values = new ContentValues();
 
                 // validate user input
-                // TODO: addDatabaseEntry() call
                 if( !getExpenseDatabaseInfo(values) ){
                     Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
                 }
@@ -145,6 +150,23 @@ public class add_expense extends AppCompatActivity {
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
+    }
+
+    public List<String> getAccounts(){
+
+        List<String> accounts = new ArrayList<String>();
+
+        SQLiteDatabase mDb = mDbHelper.getReadableDatabase();
+        Cursor c = mDb.rawQuery(classDbHelper.ACCOUNT_SELECT_ALL, null);
+
+        accounts.add("Select an Account");
+        if(c.moveToFirst()){
+            do{
+                accounts.add(c.getString(1));
+            } while(c.moveToNext());
+        }
+
+        return accounts;
     }
 
 }
