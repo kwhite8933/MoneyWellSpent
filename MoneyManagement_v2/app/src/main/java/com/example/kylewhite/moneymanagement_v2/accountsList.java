@@ -78,7 +78,7 @@ public class accountsList extends AppCompatActivity {
             while ( !c.isAfterLast() ){
 
                 String name = c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[1]));
-                String startingBalance = c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+                Float startingBalance = c.getFloat(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
                 int accountId = c.getInt(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[0]));
 
                 accountList.add( new classAccountItem(name, startingBalance, accountId) );
