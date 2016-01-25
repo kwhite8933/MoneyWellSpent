@@ -14,7 +14,7 @@ public class classDbHelper extends SQLiteOpenHelper {
     public static String TAG = classDbHelper.class.getSimpleName();
 
     // identifying database
-    private static final int DB_VERSION = 9;
+    private static final int DB_VERSION = 11;
     public static final String DB_NAME = "MoneyManagement";
 
     /////////////////////////  Bills Table  /////////////////////////
@@ -81,7 +81,7 @@ public class classDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " + ACCOUNT_TABLE_NAME + " (" +
                     ACCOUNT_FIELDS[0] + " INTEGER PRIMARY KEY, " +
                     ACCOUNT_FIELDS[1] + " text, " +
-                    ACCOUNT_FIELDS[2] + " text" + // numeric(15,2)
+                    ACCOUNT_FIELDS[2] + " REAL" + // numeric(15,2)
                     " );" ;
     // numeric(15,2) creates a fixed-point numeric data type
     // rather than just using a standard float
@@ -106,7 +106,7 @@ public class classDbHelper extends SQLiteOpenHelper {
                     EXPENSE_FIELDS[0] + " INTEGER PRIMARY KEY, " +
                     EXPENSE_FIELDS[1] + " text, " +
                     EXPENSE_FIELDS[2] + " text, " +
-                    EXPENSE_FIELDS[3] + " text" +
+                    EXPENSE_FIELDS[3] + " REAL" +
                     " );" ;
 
     public static final String EXPENSE_SELECT_ALL = "SELECT * FROM " + EXPENSE_TABLE_NAME;

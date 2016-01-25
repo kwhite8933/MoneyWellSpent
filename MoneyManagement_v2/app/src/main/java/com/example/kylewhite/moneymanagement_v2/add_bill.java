@@ -235,7 +235,7 @@ public class add_bill extends AppCompatActivity {
 
     public List<String> getAccounts(){
 
-        List<String> accounts = new ArrayList<String>();
+        List<String> accounts = new ArrayList<>();
 
         SQLiteDatabase mDb = mDbHelper.getReadableDatabase();
         Cursor c = mDb.rawQuery(classDbHelper.ACCOUNT_SELECT_ALL, null);
@@ -247,6 +247,7 @@ public class add_bill extends AppCompatActivity {
             } while(c.moveToNext());
         }
 
+        c.close();
         return accounts;
     }
 

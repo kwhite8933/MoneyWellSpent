@@ -35,7 +35,9 @@ public class classAccountItemAdapter extends ArrayAdapter<classAccountItem> {
         TextView accountStartingBalanceView = (TextView) accountsList.findViewById(R.id.tvAccountBalance);
 
         accountsNameView.setText(accountsArrayList.get(position).getAccountName());
-        accountStartingBalanceView.setText(accountsArrayList.get(position).getStartingBalance());
+
+        Float flStartBal = accountsArrayList.get(position).getStartingBalance();
+        accountStartingBalanceView.setText(String.format("%.2f",flStartBal));
 
         return accountsList;
 

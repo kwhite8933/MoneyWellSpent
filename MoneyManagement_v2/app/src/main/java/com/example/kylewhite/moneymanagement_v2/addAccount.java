@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -61,7 +59,7 @@ public class addAccount extends AppCompatActivity {
                 SQLiteDatabase mdb = mDbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
 
-                // valudate user input
+                // validate user input
                 if( !addDatabaseEntry(values) ){
                     Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
                 } else {
@@ -69,7 +67,7 @@ public class addAccount extends AppCompatActivity {
                     long newRowId = mdb.insert(classDbHelper.ACCOUNT_TABLE_NAME, null, values);
                     Toast.makeText(getApplicationContext(), errorMsg + " (id:" + newRowId + ") Successfully Added!",
                             Toast.LENGTH_LONG).show();
-                    finish();
+                    //finish();
 
                 }
 
@@ -123,7 +121,7 @@ public class addAccount extends AppCompatActivity {
             errorMsg = "Please enter a starting balance for this account";
             return false;
         }
-        values.put(classDbHelper.ACCOUNT_FIELDS[2], etAccountStartingBalance.getText().toString());
+        values.put(classDbHelper.ACCOUNT_FIELDS[2], Float.parseFloat( etAccountStartingBalance.getText().toString()) );
 
         return true;
 
@@ -135,6 +133,7 @@ public class addAccount extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.
                 INPUT_METHOD_SERVICE);
+        // try - catch block doesn't resolve warning but probably a good idea to add
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
     }

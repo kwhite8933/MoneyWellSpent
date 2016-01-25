@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -19,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -51,11 +49,12 @@ public class add_expense extends AppCompatActivity {
             }
         });
 
+        // sets the keyboard for each EditText for a smoother UX
         etExpenseName = (EditText) findViewById(R.id.etExpenseName);
-        etExpenseName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        etExpenseName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS); // first letter of each word is capitalized
 
         etExpenseAmount = (EditText) findViewById(R.id.etExpenseAmount);
-        etExpenseAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        etExpenseAmount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL); // strictly number keyboard with decimals allowed
 
         // database connection
         mDbHelper = new classDbHelper( getApplicationContext() );
@@ -74,21 +73,39 @@ public class add_expense extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // get writeable database
+                // get writable database
                 SQLiteDatabase mdb = mDbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
 
-                // validate user input
+                ContentValues values = new ContentValues(); // values that will insert the newest created expense to the database
+                ContentValues updateValues = new ContentValues(); // values that update the account balance with respect to the new expense
+
+                // validate user input and populate content values to be inserted to database
                 if( !getExpenseDatabaseInfo(values) ){
                     Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
                 }
                 else
                 {
+                    // inserts newly created expense int the database
                     long newRowId = mdb.insert(classDbHelper.EXPENSE_TABLE_NAME, null, values);
                     Toast.makeText(getApplicationContext(), errorMsg + " (id:" + newRowId + ") Successfully Added!", Toast.LENGTH_LONG).show();
+
+                    // gets expense information and updates account balance accordingly
+                    Float amount = values.getAsFloat(classDbHelper.EXPENSE_FIELDS[3]);
+                    String strAccountId = values.getAsString(classDbHelper.EXPENSE_FIELDS[2]);
+                    int intAccountId = Integer.valueOf(strAccountId);
+                    Cursor c = mdb.rawQuery(classDbHelper.accountSelectById(intAccountId),null);
+                    if (c.moveToFirst()){
+
+                        Float flExpenseBalance = c.getFloat(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+                        flExpenseBalance = flExpenseBalance - amount;
+                        updateValues.put(classDbHelper.ACCOUNT_FIELDS[2], flExpenseBalance);
+                        mdb.update(classDbHelper.ACCOUNT_TABLE_NAME, updateValues,"id = " + strAccountId, null);
+
+                    }
+
+                    // activity is finished and returns back to whatever activity called this activity
                     finish();
                 }
-
 
             }
         });
@@ -118,6 +135,7 @@ public class add_expense extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // validation of from data and population of content values with expense information
     private boolean getExpenseDatabaseInfo( ContentValues values ){
 
         if( etExpenseName.getText().toString().equals("") ){
@@ -138,6 +156,11 @@ public class add_expense extends AppCompatActivity {
         }
         values.put(classDbHelper.EXPENSE_FIELDS[3], etExpenseAmount.getText().toString());
 
+        /*String strSelector = c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+        double flSelector = Double.parseDouble(strSelector);
+        flSelector = flSelector - 1.00;
+        tvVAStartingBalance.setText(String.format("%.2f", flSelector)); */
+
         return true;
 
     }
@@ -154,19 +177,26 @@ public class add_expense extends AppCompatActivity {
 
     public List<String> getAccounts(){
 
-        List<String> accounts = new ArrayList<String>();
+        List<String> accounts = new ArrayList<>();
 
+        // get an instance of the database
         SQLiteDatabase mDb = mDbHelper.getReadableDatabase();
         Cursor c = mDb.rawQuery(classDbHelper.ACCOUNT_SELECT_ALL, null);
 
+        // adds a default selection to the beginning of the accounts list
         accounts.add("Select an Account");
+
+        // inputs the remaining accounts that the user creates
+        // any accounts created by the user will be dynamically added to this list
         if(c.moveToFirst()){
             do{
                 accounts.add(c.getString(1));
             } while(c.moveToNext());
         }
 
+        // returns the list of every account created by the user
         return accounts;
     }
+
 
 }

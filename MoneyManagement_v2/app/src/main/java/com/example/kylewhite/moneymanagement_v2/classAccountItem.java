@@ -7,10 +7,10 @@ package com.example.kylewhite.moneymanagement_v2;
 public class classAccountItem {
 
     private final String accountName;
-    private final String startingBalance;
+    private final Float startingBalance;
     private final int accountId;
 
-    classAccountItem( String accountName, String startingBalance, int accountId ){
+    classAccountItem( String accountName, Float startingBalance, int accountId ){
 
         super();
         this.accountName = accountName;
@@ -20,7 +20,7 @@ public class classAccountItem {
     }
 
     public String getAccountName(){ return accountName; }
-    public String getStartingBalance() { return startingBalance; }
+    public Float getStartingBalance() { return startingBalance; }
     public int getAccountId() { return accountId; }
 
 

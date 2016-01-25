@@ -1,7 +1,7 @@
 package com.example.kylewhite.moneymanagement_v2;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.support.v7.app.AppCompatActivity;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -19,14 +17,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class transfer extends AppCompatActivity {
@@ -62,13 +57,13 @@ public class transfer extends AppCompatActivity {
         // insert data for the "to" account spinner
         dropdown_to = (Spinner)findViewById(R.id.spnAccountTo);
         List<String> accounts = getAccounts();
-        ArrayAdapter<String> adapter_to = new ArrayAdapter<String>(transfer.this, R.layout.my_spinner, accounts);
+        ArrayAdapter<String> adapter_to = new ArrayAdapter<>(transfer.this, R.layout.my_spinner, accounts);
         adapter_to.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_to.setAdapter(adapter_to);
 
         // insert data for the "from" account spinner
         dropdown_from = (Spinner)findViewById(R.id.spnAccountFrom);
-        ArrayAdapter<String> adapter_from = new ArrayAdapter<String>(transfer.this, R.layout.my_spinner, accounts);
+        ArrayAdapter<String> adapter_from = new ArrayAdapter<>(transfer.this, R.layout.my_spinner, accounts);
         adapter_from.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_from.setAdapter(adapter_from);
 
@@ -172,7 +167,7 @@ public class transfer extends AppCompatActivity {
 
     public List<String> getAccounts(){
 
-        List<String> accounts = new ArrayList<String>();
+        List<String> accounts = new ArrayList<>();
 
         SQLiteDatabase mDb = mDbHelper.getReadableDatabase();
         Cursor c = mDb.rawQuery(classDbHelper.ACCOUNT_SELECT_ALL, null);
@@ -184,6 +179,7 @@ public class transfer extends AppCompatActivity {
             } while(c.moveToNext());
         }
 
+        c.close();
         return accounts;
     }
 

@@ -80,7 +80,8 @@ public class viewAccount extends AppCompatActivity {
             tvVAAccountName.setText(c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[1])));
 
             // Account Starting Balance
-            tvVAStartingBalance.setText(c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2])));
+            Float flSelector = Float.parseFloat(c.getString(c.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2])));
+            tvVAStartingBalance.setText(String.format("%.2f",flSelector)); 
 
             /* below is a way to convert the string value of the starting balance to a double
              * for manipulation of the balance for transfer, billing, expenses, etc.
