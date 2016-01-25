@@ -75,7 +75,6 @@ public class add_expense extends AppCompatActivity {
 
                 // get writable database
                 SQLiteDatabase mdb = mDbHelper.getWritableDatabase();
-
                 ContentValues values = new ContentValues(); // values that will insert the newest created expense to the database
                 ContentValues updateValues = new ContentValues(); // values that update the account balance with respect to the new expense
 
@@ -102,6 +101,9 @@ public class add_expense extends AppCompatActivity {
                         mdb.update(classDbHelper.ACCOUNT_TABLE_NAME, updateValues,"id = " + strAccountId, null);
 
                     }
+
+                    // closes database connection
+                    c.close();
 
                     // activity is finished and returns back to whatever activity called this activity
                     finish();

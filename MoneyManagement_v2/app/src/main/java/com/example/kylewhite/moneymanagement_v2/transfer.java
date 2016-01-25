@@ -98,6 +98,7 @@ public class transfer extends AppCompatActivity {
 
                 SQLiteDatabase mDb = mDbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
+                ContentValues updateValues = new ContentValues();
 
                 // Validate user input
                 if( !addTransferDatabaseEntry(values) ){
@@ -107,6 +108,38 @@ public class transfer extends AppCompatActivity {
                 {
                     long newRowId = mDb.insert(classDbHelper.TRANSFER_TABLE_NAME, null, values);
                     Toast.makeText(getApplicationContext(), errorMsg + " (id:" + newRowId + ") Successfully Added!", Toast.LENGTH_LONG).show();
+
+                    // gets transfer information and updates account balances accordingly
+                    Float flAmount = values.getAsFloat(classDbHelper.TRANSFER_FIELDS[3]);
+                    String strFromAccountId = values.getAsString(classDbHelper.TRANSFER_FIELDS[2]);
+                    int intFromAccountId = Integer.valueOf(strFromAccountId);
+                    Cursor cFrom = mDb.rawQuery(classDbHelper.accountSelectById(intFromAccountId),null);
+                    if (cFrom.moveToFirst()){
+
+                        Float flTransferFromAmount = cFrom.getFloat(cFrom.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+                        flTransferFromAmount = flTransferFromAmount - flAmount;
+                        updateValues.put(classDbHelper.ACCOUNT_FIELDS[2], flTransferFromAmount);
+                        mDb.update(classDbHelper.ACCOUNT_TABLE_NAME, updateValues,"id = " + strFromAccountId, null);
+
+                    }
+
+                    String strToAccountId = values.getAsString(classDbHelper.TRANSFER_FIELDS[1]);
+                    int intToAccountId = Integer.valueOf(strToAccountId);
+                    Cursor cTo = mDb.rawQuery(classDbHelper.accountSelectById(intToAccountId), null);
+                    if( cTo.moveToFirst() ){
+
+                        Float flTransferToAmount = cTo.getFloat(cTo.getColumnIndex(classDbHelper.ACCOUNT_FIELDS[2]));
+                        flTransferToAmount = flTransferToAmount + flAmount;
+                        updateValues.put(classDbHelper.ACCOUNT_FIELDS[2], flTransferToAmount);
+                        mDb.update(classDbHelper.ACCOUNT_TABLE_NAME, updateValues, "id = " + strToAccountId, null);
+
+                    }
+
+                    // closes database connection
+                    cTo.close();
+                    cFrom.close();
+
+                    // activity is finished and returns back to the activity that called this activity
                     finish();
                 }
 
