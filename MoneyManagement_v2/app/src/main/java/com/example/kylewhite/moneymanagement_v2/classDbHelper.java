@@ -14,7 +14,7 @@ public class classDbHelper extends SQLiteOpenHelper {
     public static String TAG = classDbHelper.class.getSimpleName();
 
     // identifying database
-    private static final int DB_VERSION = 11;
+    private static final int DB_VERSION = 12;
     public static final String DB_NAME = "MoneyManagement";
 
     /////////////////////////  Bills Table  /////////////////////////
@@ -126,7 +126,7 @@ public class classDbHelper extends SQLiteOpenHelper {
                     TRANSFER_FIELDS[0] + " INTEGER PRIMARY KEY, " +
                     TRANSFER_FIELDS[1] + " text, " +
                     TRANSFER_FIELDS[2] + " text, " +
-                    TRANSFER_FIELDS[3] + " text" +
+                    TRANSFER_FIELDS[3] + " REAL" +
                     " );" ;
 
     public static final String TRANSFER_SELECT_ALL = "SELECT * FROM " + TRANSFER_TABLE_NAME;
