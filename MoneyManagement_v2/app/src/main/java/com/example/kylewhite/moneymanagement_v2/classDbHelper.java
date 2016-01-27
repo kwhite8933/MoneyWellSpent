@@ -134,6 +134,12 @@ public class classDbHelper extends SQLiteOpenHelper {
         return "SELECT * FROM " + TRANSFER_TABLE_NAME + "WHERE id='" + transferId + "'";
     }
 
+    /////////////////////////  Deposit Table  /////////////////////////
+    // TODO: Add a deposits table to the database
+
+    /////////////////////////  Withdraw Table  /////////////////////////
+    // TODO: Add a withdraws table to the database
+
     // Constructor required by SQlineOpenHelper
     classDbHelper(Context context){
         super( context , DB_NAME, null, DB_VERSION );

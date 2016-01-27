@@ -93,6 +93,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btnMakeDeposit = (Button) findViewById(R.id.btnMainMakeDeposit);
+        btnMakeDeposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, makeDeposit.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button btnMakeWithdrawal = (Button) findViewById(R.id.btnMainMakeWithdrawal);
+        btnMakeWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, makeWithdrawal.class);
+                startActivity(intent);
+
+            }
+        });
+
 
     }
 

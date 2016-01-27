@@ -67,7 +67,7 @@ public class addAccount extends AppCompatActivity {
                     long newRowId = mdb.insert(classDbHelper.ACCOUNT_TABLE_NAME, null, values);
                     Toast.makeText(getApplicationContext(), errorMsg + " (id:" + newRowId + ") Successfully Added!",
                             Toast.LENGTH_LONG).show();
-                    //finish();
+                    finish();
 
                 }
 

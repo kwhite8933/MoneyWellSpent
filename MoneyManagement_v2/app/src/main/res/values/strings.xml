@@ -45,4 +45,6 @@
     <string name="title_activity_accouts_list">accoutsList</string>
     <string name="title_activity_view_account">viewAccount</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_make_deposit">makeDeposit</string>
+    <string name="title_activity_make_withdrawal">makeWithdrawal</string>
 </resources>
