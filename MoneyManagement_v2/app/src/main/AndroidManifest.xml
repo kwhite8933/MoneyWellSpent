@@ -11,7 +11,7 @@
         <activity
             android:name=".addAccount"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".transfer"
             android:label="@string/title_activity_transfer"
@@ -50,6 +50,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".makeDeposit"
+            android:label="@string/title_activity_make_deposit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".makeWithdrawal"
+            android:label="@string/title_activity_make_withdrawal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
